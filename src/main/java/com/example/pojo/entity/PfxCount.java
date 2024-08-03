@@ -7,11 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    private Long user_id;
-    private String user_nm;
-    private String user_typ_cd;
-    private String user_pw;
+public class PfxCount {
+    private String phone_prefix;
+    private int sold_count;
 }
-
-
