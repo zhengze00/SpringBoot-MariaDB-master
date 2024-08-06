@@ -4,17 +4,12 @@ import com.example.mapper.HelloMapper;
 import com.example.mapper.HiMapper;
 import com.example.mapper.UserMapper;
 import com.example.pojo.Result;
-import com.example.pojo.entity.PfxCount;
-import com.example.pojo.entity.PhoneUploadDTO;
-import com.example.pojo.entity.User;
-import com.example.pojo.entity.SalePhnNum;
+import com.example.pojo.entity.*;
+import com.zaxxer.hikari.HikariDataSource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -29,9 +24,10 @@ public class HelloController {
     private HelloMapper helloMapper;
     @Autowired
     private HiMapper hiMapper;
-
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private HikariDataSource dataSource;
 
     @RequestMapping("/hello")
     public String hello() {
@@ -43,11 +39,45 @@ public class HelloController {
     @RequestMapping("/getSalePhnNum")
     public Map<String, Object> getSalePhnNum() {
         log.info("request from getSalePhnNum");
-        List<SalePhnNum> salePhnNumList = hiMapper.getSalePhnNumList();
+        List<SalePhnNum> salePhnNumList = hiMapper.getSalePhnNumsList(); // 使用新查询方法
+
+        // 调试输出
+        for (SalePhnNum salePhnNum : salePhnNumList) {
+            String userBankAcc = userMapper.getUserBankAcc(salePhnNum.getUser_nm());
+            salePhnNum.setUserBankAcc(userBankAcc);
+        }
+
+        // 获取汇率和结算率
         String exchangeRate = hiMapper.getExchangeRate();
+        String settlementRate = hiMapper.getSettlementRate();
+
         Map<String, Object> response = new HashMap<>();
         response.put("salePhnNums", salePhnNumList);
         response.put("exchangeRate", exchangeRate);
+        response.put("settlementRate", settlementRate);
+        return response;
+    }
+
+    @CrossOrigin(origins = "http://localhost:8080")
+    @RequestMapping("/getBankAccount")
+    public Map<String, Object> getBankAccount() {
+        log.info("request from getBankAccount");
+        List<SalePhnNum> bankAccountList = hiMapper.getBankAccountList(); // 使用新查询方法
+
+        // 调试输出
+        for (SalePhnNum bankAccount : bankAccountList) {
+            String userBankAcc = userMapper.getUserBankAcc(bankAccount.getUser_nm());
+            bankAccount.setUserBankAcc(userBankAcc);
+        }
+
+        // 获取汇率和结算率
+        String exchangeRate = hiMapper.getExchangeRate();
+        String settlementRate = hiMapper.getSettlementRate();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("bankAccount", bankAccountList);
+        response.put("exchangeRate", exchangeRate);
+        response.put("settlementRate", settlementRate);
         return response;
     }
 
@@ -63,19 +93,18 @@ public class HelloController {
     @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping("/upload_phone")
     public Result uploadPhone(@RequestBody PhoneUploadDTO phoneUploadDTO, HttpServletRequest req) {
-
-        //从数据库找用户写的对应的编号
-        String salePhnPfxCd = hiMapper.getCommonCodeValue( phoneUploadDTO.getSale_phn_pfx_cd());
-        String saleCtgrCd = hiMapper.getCommonCodeValue( phoneUploadDTO.getSale_ctgr_cd());
+        // 从数据库找用户写的对应的编号
+        String salePhnPfxCd = hiMapper.getCommonCodeValue(phoneUploadDTO.getSale_phn_pfx_cd());
+        String saleCtgrCd = hiMapper.getCommonCodeValue(phoneUploadDTO.getSale_ctgr_cd());
         String saleStatusCd = hiMapper.getCommonCodeValue(phoneUploadDTO.getSale_status_cd());
 
-        //修改phoneUploadDTO里的内容
+        // 修改 phoneUploadDTO 里的内容
         phoneUploadDTO.setSale_phn_pfx_cd(salePhnPfxCd);
         phoneUploadDTO.setSale_ctgr_cd(saleCtgrCd);
         phoneUploadDTO.setSale_status_cd(saleStatusCd);
 
-        //从请求头中得到user_nm的值，并从数据库找到对应的联系方式，写入
-        String user_nm = (String)req.getAttribute("user_nm");
+        // 从请求头中得到 user_nm 的值，并从数据库找到对应的联系方式，写入
+        String user_nm = (String) req.getAttribute("user_nm");
         log.info("user_nm: {}", user_nm);
         String sale_contact = userMapper.getUserContect(user_nm);
         String rgst_nm = userMapper.getRgst_nm(user_nm);
@@ -91,7 +120,33 @@ public class HelloController {
         return Result.success();
     }
 
+    @PostMapping("/delete_phone")
+    public Result deletePhone(@RequestBody Map<String, Object> requestData, HttpServletRequest req) {
+        Integer saleId;
+        try {
+            saleId = Integer.valueOf((String) requestData.get("sale_id"));
+        } catch (NumberFormatException e) {
+            return Result.error("Invalid sale ID format.");
+        }
 
+        // 检查 saleId 是否为 null
+        if (saleId == null) {
+            return Result.error("Sale ID is required.");
+        }
 
+        // 执行删除操作
+        int rowsAffected = hiMapper.deletePhoneData(saleId);
+
+        if (rowsAffected > 0) {
+            return Result.success("Delete Successful!");
+        } else {
+            return Result.error("Deletion failed.");
+        }
+    }
 
 }
+
+
+
+
+

@@ -17,7 +17,9 @@ public class PhoneUploadDTO {
     private BigDecimal sale_price;
     private String sale_status_cd;
     private String sale_contact;
-    private String rgst_dt;
     private String rgst_nm;
+    private String rgst_dt;
+    private String audit_nm;
+    private String audit_dt;
 
 }

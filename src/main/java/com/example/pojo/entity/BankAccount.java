@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SalePhnNum {
+public class BankAccount {
     private Long sale_id;
     private String sale_phn_num;
     private String sale_phn_pfx_cd;
