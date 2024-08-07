@@ -140,7 +140,7 @@ public class HelloController {
         if (rowsAffected > 0) {
             return Result.success("Delete Successful!");
         } else {
-            return Result.error("Deletion failed.");
+            return Result.error("Deletion failed");
         }
     }
 
