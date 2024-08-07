@@ -120,29 +120,67 @@ public class HelloController {
         return Result.success();
     }
 
-    @PostMapping("/delete_phone")
-    public Result deletePhone(@RequestBody Map<String, Object> requestData, HttpServletRequest req) {
-        Integer saleId;
+    @CrossOrigin(origins = "http://localhost:8080")
+    @PostMapping("/update_phone")
+    public Result updatePhoneData(@RequestBody PhoneUploadDTO phoneUploadDTO) {
+        // 从数据库找用户写的对应的编号
+        String salePhnPfxCd = hiMapper.getCommonCodeValue(phoneUploadDTO.getSale_phn_pfx_cd());
+        String saleCtgrCd = hiMapper.getCommonCodeValue(phoneUploadDTO.getSale_ctgr_cd());
+        String saleStatusCd = hiMapper.getCommonCodeValue(phoneUploadDTO.getSale_status_cd());
+
+        // 修改 phoneUploadDTO 里的内容
+        phoneUploadDTO.setSale_phn_pfx_cd(salePhnPfxCd);
+        phoneUploadDTO.setSale_ctgr_cd(saleCtgrCd);
+        phoneUploadDTO.setSale_status_cd(saleStatusCd);
+
         try {
-            saleId = Integer.valueOf((String) requestData.get("sale_id"));
-        } catch (NumberFormatException e) {
-            return Result.error("Invalid sale ID format.");
-        }
-
-        // 检查 saleId 是否为 null
-        if (saleId == null) {
-            return Result.error("Sale ID is required.");
-        }
-
-        // 执行删除操作
-        int rowsAffected = hiMapper.deletePhoneData(saleId);
-
-        if (rowsAffected > 0) {
-            return Result.success("Delete Successful!");
-        } else {
-            return Result.error("Deletion failed");
+            log.info("Received data: " + phoneUploadDTO);
+            hiMapper.updatePhoneData(phoneUploadDTO);
+            return Result.success();
+        } catch (Exception e) {
+            log.error("Error updating phone data:", e);
+            return Result.error();
         }
     }
+
+    @CrossOrigin(origins = "http://localhost:8080")
+    @PostMapping("/delete_phone")
+    public Result deletePhoneData(@RequestBody SaleID saleID) {
+        try {
+            hiMapper.deletePhoneData(saleID.getSale_id()); // 修改这里，传递正确的ID
+            return Result.success();
+        } catch (Exception e) {
+            log.error("Error deleting phone data:", e);
+            return Result.error();
+        }
+
+    }
+
+    @CrossOrigin(origins = "http://localhost:8080")
+    @PostMapping("/markSettlementCompleted")
+    public Result markSettlementCompleted(@RequestBody PhoneUploadDTO phoneUploadDTO) {
+        log.info("Entering markSettlementCompleted method.");
+        // 从数据库找用户写的对应的编号
+        String saleStatusCd = hiMapper.getCommonCodeValue(phoneUploadDTO.getSale_status_cd());
+        log.info("Sale status code retrieved: {}", saleStatusCd);
+
+        // 修改 phoneUploadDTO 里的内容
+        phoneUploadDTO.setSale_status_cd(saleStatusCd);
+
+        String rgst_nm = phoneUploadDTO.getRgst_nm();
+        log.info("Owner retrieved from request: {}", rgst_nm);
+
+        try {
+            // 使用注入的 HiMapper 实例调用方法
+            int result = hiMapper.markSettlementCompleted(rgst_nm);
+            log.info("Result of markSettlementCompleted: {}", result);
+            return Result.success(result);
+        } catch (Exception e) {
+            log.error("Error marking settlement completed:", e);
+            return Result.error();
+        }
+    }
+
 
 }
 

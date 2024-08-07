@@ -36,6 +36,18 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:8080")
+    @GetMapping("/getUserData")
+    public Result getUserData(@RequestParam String user_nm) {
+        try {
+            User user = userMapper.getUserData(user_nm);
+            return Result.success(user);
+        } catch (Exception e) {
+            log.error("Error fetching user data:", e);
+            return Result.error("Error fetching user data");
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/updateUserData")
     public Result updateUserData(@RequestBody User user) {
         try {
@@ -61,15 +73,6 @@ public class UserController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping("/getUserData")
-    public Result getUserData(@RequestParam String user_nm) {
-        try {
-            User user = userMapper.getUserData(user_nm);
-            return Result.success(user);
-        } catch (Exception e) {
-            log.error("Error fetching user data:", e);
-            return Result.error("Error fetching user data");
-        }
-    }
+
+
 }

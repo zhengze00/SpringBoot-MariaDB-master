@@ -10,7 +10,8 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PhoneUploadDTO {
+public class SaleID {
+    private String sale_id;
     private String sale_phn_pfx_cd;
     private String sale_ctgr_cd;
     private String sale_phn_num;
@@ -21,5 +22,5 @@ public class PhoneUploadDTO {
     private String rgst_dt;
     private String audit_nm;
     private String audit_dt;
-    private String owner;
+
 }

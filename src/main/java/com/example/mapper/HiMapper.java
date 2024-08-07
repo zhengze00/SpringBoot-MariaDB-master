@@ -1,9 +1,6 @@
 package com.example.mapper;
 
-import com.example.pojo.entity.PfxCount;
-import com.example.pojo.entity.PhoneEditDTO;
-import com.example.pojo.entity.PhoneUploadDTO;
-import com.example.pojo.entity.SalePhnNum;
+import com.example.pojo.entity.*;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -55,17 +52,13 @@ public interface HiMapper {
     void insertPhoneData(PhoneUploadDTO phoneUploadDTO);
 
     @Delete("DELETE FROM glvs_sale_phn_num WHERE sale_id = #{saleId}")
-    int deletePhoneData(@Param("saleId") Integer saleId);
-
-   /* @Update("UPDATE glvs_sale_phn_num SET sale_status_cd = 'S03' WHERE rgst_nm = #{owner} AND sale_status_cd = 'S02'")
-    int markSettlementCompleted(@Param("owner") String owner);
+    int deletePhoneData(@Param("saleId") String saleId); // 使用 @Param 注解确保传递参数正确
 
     @Update("UPDATE glvs_sale_phn_num SET sale_phn_pfx_cd = #{sale_phn_pfx_cd}, sale_ctgr_cd = #{sale_ctgr_cd}, sale_price = #{sale_price}, sale_status_cd = #{sale_status_cd}, rgst_dt = #{rgst_dt} WHERE sale_phn_num = #{sale_phn_num}")
-    void uploadPhoneData(PhoneUploadDTO phoneUploadDTO);
+    void updatePhoneData(PhoneUploadDTO phoneUploadDTO);
 
-    @Delete("DELETE FROM glvs_sale_phn_num WHERE sale_phn_num = #{sale_phn_num}")
-    void deletePhoneData(@Param("sale_phn_num") String sale_phn_num);
-*/
+    @Update("UPDATE glvs_sale_phn_num SET sale_status_cd = 'S03' WHERE rgst_nm = #{rgst_nm} AND sale_status_cd = 'S02'")
+    int markSettlementCompleted(String phoneUploadDTO);
 
 
 }
