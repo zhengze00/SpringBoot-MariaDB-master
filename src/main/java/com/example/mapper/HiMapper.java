@@ -47,8 +47,8 @@ public interface HiMapper {
     @Select("SELECT comm_cd_val FROM glvs_common_cd WHERE comm_cd_val_nm = #{name}")
     String getCommonCodeValue(@Param("name") String name);
 
-    @Insert("INSERT INTO glvs_sale_phn_num (sale_phn_num, sale_phn_pfx_cd, sale_ctgr_cd, sale_price, sale_status_cd, sale_contact, rgst_nm, rgst_dt) " +
-            "VALUES (#{sale_phn_num}, #{sale_phn_pfx_cd}, #{sale_ctgr_cd}, #{sale_price}, #{sale_status_cd}, #{sale_contact}, #{rgst_nm}, #{rgst_dt})")
+    @Insert("INSERT INTO glvs_sale_phn_num (sale_phn_num, sale_phn_pfx_cd, sale_ctgr_cd, sale_price, sale_status_cd, sale_contact, rgst_nm, rgst_dt, user_typ_cd, user_nm) " +
+            "VALUES (#{sale_phn_num}, #{sale_phn_pfx_cd}, #{sale_ctgr_cd}, #{sale_price}, #{sale_status_cd}, #{sale_contact}, #{rgst_nm}, #{rgst_dt}, #{user_typ_cd}, #{user_nm})")
     void insertPhoneData(PhoneUploadDTO phoneUploadDTO);
 
     @Delete("DELETE FROM glvs_sale_phn_num WHERE sale_id = #{saleId}")
