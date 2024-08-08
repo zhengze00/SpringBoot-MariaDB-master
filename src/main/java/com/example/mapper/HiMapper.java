@@ -15,7 +15,7 @@ public interface HiMapper {
     @Select("SELECT comm_cd_val_nm FROM glvs_common_cd WHERE comm_cd_id = 'exchange_rt_cd' AND comm_cd_val = 'E001'")
     public String getExchangeRate();
 
-    @Select("SELECT settl_rt FROM glvs_settl_rt WHERE settl_id = '1' AND settl_rt = '90'")
+    @Select("SELECT settl_rt FROM glvs_settl_rt WHERE settl_id = '1'")
     public String getSettlementRate();
 
     @Select("SELECT spn.sale_id, spn.sale_phn_num, scd.comm_cd_val_nm AS sale_phn_pfx_cd, scc.comm_cd_val_nm AS sale_ctgr_cd, spn.sale_price, ss.comm_cd_val_nm AS sale_status_cd, spn.sale_contact, spn.rgst_nm, spn.rgst_dt, u.user_nm, u.user_bank_acc " +
