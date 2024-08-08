@@ -1,0 +1,165 @@
+-- glvs_common_cd 테이블 생성
+CREATE TABLE glvs_common_cd (
+    comm_cd_id VARCHAR(50),
+    comm_cd_val VARCHAR(100),
+    comm_cd_val_nm VARCHAR(100),
+    rgst_nm VARCHAR(50) ,
+    rgst_dt DATE,
+    audit_nm VARCHAR(50) ,
+    audit_dt DATE ,
+    PRIMARY KEY (comm_cd_id, comm_cd_val)
+);
+
+-- 인덱스 추가
+CREATE INDEX idx_comm_cd_val ON glvs_common_cd(comm_cd_val);
+
+
+-- glvs_user 테이블 생성
+CREATE TABLE glvs_user (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_nm VARCHAR(100) UNIQUE NOT NULL,
+    user_pw VARCHAR(255) NOT NULL,
+    user_contact VARCHAR(25) NOT NULL,
+    user_typ_cd VARCHAR(50) NOT NULL,
+    user_bank_acc VARCHAR(255) NOT NULL,
+    rgst_nm VARCHAR(50),
+    rgst_dt DATE ,
+    audit_nm VARCHAR(50) ,
+    audit_dt DATE ,
+    FOREIGN KEY (user_typ_cd) REFERENCES glvs_common_cd(comm_cd_val)
+);
+
+-- glvs_sale_phn_num 테이블 생성
+CREATE TABLE glvs_sale_phn_num (
+    sale_id INT PRIMARY KEY AUTO_INCREMENT,
+    sale_phn_num VARCHAR(50) NOT NULL,
+    sale_phn_pfx_cd VARCHAR(5) NOT NULL,
+    sale_ctgr_cd VARCHAR(50) NOT NULL,
+    sale_price DECIMAL(10, 2) NOT NULL,
+    sale_status_cd VARCHAR(50) NOT NULL,
+    sale_contact VARCHAR(50) NOT NULL,
+    rgst_nm VARCHAR(50),
+    rgst_dt DATE,
+    audit_nm VARCHAR(50),
+    audit_dt DATE ,
+    user_typ_cd VARCHAR(50),
+    user_nm VARCHAR(50),
+    FOREIGN KEY (sale_phn_pfx_cd) REFERENCES glvs_common_cd(comm_cd_val),
+    FOREIGN KEY (sale_status_cd) REFERENCES glvs_common_cd(comm_cd_val),
+    FOREIGN KEY (sale_ctgr_cd) REFERENCES glvs_common_cd(comm_cd_val)
+);
+
+
+
+-- glvs_settl_rt 테이블 생성
+CREATE TABLE glvs_settl_rt (
+    settl_id INT PRIMARY KEY AUTO_INCREMENT,
+    settl_rt DECIMAL(10, 2) NOT NULL,
+    rgst_nm VARCHAR(50) ,
+    rgst_dt DATE ,
+    audit_nm VARCHAR(50) ,
+    audit_dt DATE 
+);
+
+-- 공통 코드 데이터 삽입
+INSERT INTO glvs_common_cd (comm_cd_id, comm_cd_val, comm_cd_val_nm) VALUES
+('user_typ_cd', 'U01', 'Seller'),
+('user_typ_cd', 'U02', 'Admin'),
+('sale_status_cd', 'S01', 'Selling'),
+('sale_status_cd', 'S02', 'SoldOut'),
+('sale_status_cd', 'S03', 'SettlementCompleted'),
+('sale_ctgr_cd','S001','0.1.2.3 SERIES'),
+('sale_ctgr_cd','S002','0.1.9 SERIES'),
+('sale_ctgr_cd','S003','1314 SERIES'),
+('sale_ctgr_cd','S004','520 SERIES'),
+('sale_ctgr_cd','S005','AAA SERIES'),
+('sale_ctgr_cd','S006','AAAA SERIES'),
+('sale_ctgr_cd','S007','AAAAA SERIES'),
+('sale_ctgr_cd','S008','AAAAAA SERIES'),
+('sale_ctgr_cd','S009','AAAB SERIES'),
+('sale_ctgr_cd','S010','AABA SERIES'),
+('sale_ctgr_cd','S011','AABAA SERIES'),
+('sale_ctgr_cd','S012','AABB SERIES'),
+('sale_ctgr_cd','S013','AABBCC SERIES'),
+('sale_ctgr_cd','S014','AABBCCDD SERIES'),
+('sale_ctgr_cd','S015','AB SERIES'),
+('sale_ctgr_cd','S016','ABAA SERIES'),
+('sale_ctgr_cd','S017','ABAA/AABA SERIES'),
+('sale_ctgr_cd','S018','ABAB SERIES'),
+('sale_ctgr_cd','S019','ABABAB SERIES'),
+('sale_ctgr_cd','S020','ABBA SERIES'),
+('sale_ctgr_cd','S021','ABBB SERIES'),
+('sale_ctgr_cd','S022','BOSS SERIES'),
+('sale_ctgr_cd','S023','FENGSHUI 1349 SERIES'),
+('sale_ctgr_cd','S024','FENGSHUI 2678 SERIES'),
+('sale_ctgr_cd','S025','ICHING SERIES'),
+('sale_ctgr_cd','S026','LADDER SERIES'),
+('sale_ctgr_cd','S027','MATAFIZIK SERIES'),
+('sale_ctgr_cd','S028','NORMAL SERIES'),
+('sale_ctgr_cd','S029','ONG 88 SERIES'),
+('sale_ctgr_cd','S030','OTHER SERIES'),
+('sale_ctgr_cd','S031','REPEAT SERIES'),
+('sale_ctgr_cd','S032','THOUSAND NUMBER SERIES'),
+('sale_ctgr_cd','S033','YEAR SERIES'),
+('exchange_rt_cd','E001','300'),
+('sale_phn_pfx_cd','P001','010'),
+('sale_phn_pfx_cd','P002','011'),
+('sale_phn_pfx_cd','P003','012'),
+('sale_phn_pfx_cd','P004','013'),
+('sale_phn_pfx_cd','P005','014'),
+('sale_phn_pfx_cd','P006','015'),
+('sale_phn_pfx_cd','P007','016'),
+('sale_phn_pfx_cd','P008','017'),
+('sale_phn_pfx_cd','P009','018'),
+('sale_phn_pfx_cd','P010','019'),
+('sale_phn_pfx_cd','P011','0192'),
+('sale_phn_pfx_cd','P012','0193')
+
+1.怎么自动显示马币*300=韩币价格？
+在后端获取汇率：从 glvs_common_cd 表中获取汇率(exc_rt)。
+在前端计算价格：在前端使用获取到的汇率计算并显示转换后的价格。
+
+2.韩币价格怎么以韩国货币格式呈现？
+toLocaleString
+
+3.Common_code 怎么用名字呈现数据
+在后端什么数据as什么_nm数据
+新增新定义
+前端呈现该新定义
+
+4.如何关闭弹窗？
+showModal=true 出现弹窗，=false隐藏弹窗
+
+5.如何搜索？
+加入v-model和@click 功能
+
+6.搜索功能如何只匹配号码的一部分？
+String.prototype.includes
+
+7.一边输入号码一边显示数据：
+安装npm install lodash ，watch 监听数据变化
+
+
+先得到所有已经卖出的商品列表
+对里面user nm去重
+然后用这个表去找对应的银行卡号
+再inner join前面得到的商品列表，把卡号附上去
+
+
+✅
+-웹 마케팅 용어
+-실시간 검색 기능
+-국번 별 판매 현황 노출 기능
+-페이지 건너뛰기 기능
+-정산율 노출 기능
+-계정 로그인 및 로그아웃 기능(Gwt Token) 
+-폰 번호 업로드,편집,삭제 기능
+-정산완료 처리 기능
+-개인정보,비밀번호 변경 기능
+-웹 방문 권한 기능（Admin，Edit&Delete）
+-Local Storage 유저 값 저장 기능
+-인터셉터 기능 - 사용자의 요청 가로채는 역할
+❌
+问题1：表设计
+问题2：部署server
+
