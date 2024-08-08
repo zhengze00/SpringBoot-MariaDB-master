@@ -47,6 +47,9 @@ public class UserController {
             responseData.put("user_id", userInfo.getUser_id());
             responseData.put("user_typ_cd", userInfo.getUser_typ_cd());
             responseData.put("rgst_nm", userInfo.getRgst_nm());
+            responseData.put("user_nm", userInfo.getUser_nm());
+            responseData.put("user_contact", userInfo.getUser_contact());
+            responseData.put("user_bank_acc", userInfo.getUser_bank_acc());
 
             return Result.success(responseData);
         } else {
