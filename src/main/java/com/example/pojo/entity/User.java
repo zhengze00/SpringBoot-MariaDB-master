@@ -18,7 +18,7 @@ public class User {
     private String rgst_dt;
     private String audit_nm;
     private String audit_dt;
-
+    private String currentPassword; // Add this if you need to pass it
 
 }
 

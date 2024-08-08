@@ -22,4 +22,6 @@ public class PhoneUploadDTO {
     private String audit_nm;
     private String audit_dt;
     private String owner;
+    private String user_typ_cd; // 新增字段
+    private String user_nm; // 新增字段
 }

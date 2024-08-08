@@ -2,7 +2,6 @@ package com.example.mapper;
 
 import com.example.pojo.entity.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -11,7 +10,7 @@ public interface UserMapper {
     @Select("select count(*) from glvs_user where user_nm=#{user_nm} and user_pw=#{user_pw}")
     public Integer login(User user);
 
-    @Select("select user_id, user_typ_cd, rgst_nm from glvs_user where user_nm=#{user_nm}")
+    @Select("select user_id, user_typ_cd, rgst_nm, user_nm, user_contact, user_bank_acc from glvs_user where user_nm=#{user_nm}")
     User getUserInfo(String user_nm);
 
     @Select("SELECT user_contact FROM glvs_user WHERE user_nm = #{user_nm}")
@@ -31,9 +30,11 @@ public interface UserMapper {
     @Update("UPDATE glvs_user SET user_nm=#{user_nm}, user_contact=#{user_contact}, rgst_nm=#{rgst_nm}, user_bank_acc=#{user_bank_acc} WHERE rgst_nm=#{rgst_nm}")
     void updateUserData(User user);
 
+    @Select("SELECT * FROM glvs_user WHERE rgst_nm = #{rgst_nm}")
+    User getUserByNm(String rgst_nm);
+
     // 更新用户密码
     @Update("UPDATE glvs_user SET user_pw = #{user_pw} WHERE rgst_nm = #{rgst_nm}")
     void updateUserPassword(User user);
-
 
 }
