@@ -106,36 +106,36 @@ CREATE TABLE IF NOT EXISTS `glvs_sale_phn_num` (
   CONSTRAINT `fk_sale_ctgr_cd` FOREIGN KEY (`sale_ctgr_cd`) REFERENCES `glvs_common_cd` (`comm_cd_val`),
   CONSTRAINT `fk_sale_phn_pfx_cd` FOREIGN KEY (`sale_phn_pfx_cd`) REFERENCES `glvs_common_cd` (`comm_cd_val`),
   CONSTRAINT `fk_sale_status_cd` FOREIGN KEY (`sale_status_cd`) REFERENCES `glvs_common_cd` (`comm_cd_val`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- 테이블 데이터 glvs_phno_master.glvs_sale_phn_num:~24 rows (대략적) 내보내기
+-- 테이블 데이터 glvs_phno_master.glvs_sale_phn_num:~40 rows (대략적) 내보내기
 INSERT INTO `glvs_sale_phn_num` (`sale_id`, `sale_phn_num`, `sale_phn_pfx_cd`, `sale_ctgr_cd`, `sale_price`, `sale_status_cd`, `sale_contact`, `rgst_nm`, `rgst_dt`, `audit_nm`, `audit_dt`, `user_typ_cd`, `user_nm`) VALUES
-	(3, '011-1435-6789', 'P01', 'S025', 300.0000000000, 'S01', '010-3453-0745', 'Park', '2024-06-28', NULL, NULL, 'U02', 'c'),
+	(3, '011-1435-6789', 'P01', 'S028', 300.0000000000, 'S01', '010-3453-0745', 'Park', '2024-06-28', NULL, NULL, 'U02', 'c'),
 	(30, '012-3456-8789', 'P03', 'S028', 100.0000000000, 'S03', '010-5737-0741', 'JeongTaek', '2023-01-01', NULL, NULL, 'U02', 'zz'),
-	(39, '011-9988-8444', 'P02', 'S002', 12333.0000000000, 'S02', '012-2222-7890', 'Jessica', '2024-08-01', NULL, NULL, 'U01', 'abc'),
+	(39, '011-9068-8442', 'P02', 'S002', 12333.0000000000, 'S02', '012-2222-7890', 'Jessica', '2024-08-01', NULL, NULL, 'U01', 'abc'),
 	(40, '012-1234-8987', 'P03', 'S033', 630.0000000000, 'S03', '010-5737-0741', 'JeongTaek', '2023-11-11', NULL, NULL, 'U02', 'zz'),
 	(42, '011-3456-8789', 'P01', 'S028', 100.0000000000, 'S02', '012-2222-7890', 'Jessica', '2023-01-01', NULL, NULL, 'U01', 'abc'),
 	(44, '010-0112-2334', 'P00', 'S014', 900.0000000000, 'S03', '012-3456-7890', 'John', '2024-08-06', NULL, NULL, 'U01', 'a'),
 	(45, '010-1010-1010', 'P00', 'S019', 101010.0000000000, 'S03', '012-3456-7890', 'John', '2024-08-06', NULL, NULL, 'U01', 'a'),
-	(54, '011-5555-5555', 'P00', 'S019', 55554.0000000000, 'S01', '012-3456-7890', 'John', '2024-08-06', NULL, NULL, 'U01', 'a'),
-	(55, '012-1212-1212', 'P02', 'S019', 10000.0000000000, 'S01', '012-3456-7890', 'John', '2024-08-06', NULL, NULL, 'U01', 'a'),
+	(54, '011-5454-5455', 'P00', 'S019', 55554.0000000000, 'S01', '012-3456-7890', 'John', '2024-08-06', NULL, NULL, 'U01', 'a'),
+	(55, '012-1212-1234', 'P02', 'S019', 10000.0000000000, 'S01', '012-3456-7890', 'John', '2024-08-06', NULL, NULL, 'U01', 'a'),
 	(56, '010-2222-2223', 'P00', 'S001', 22223.0000000000, 'S01', '011-1111-1111', 'Li', '2024-08-07', NULL, NULL, 'U01', 'b'),
 	(57, '010-1314-1314', 'P02', 'S003', 131314.0000000000, 'S01', '011-1111-1111', 'Li', '2024-08-07', NULL, NULL, 'U01', 'b'),
 	(58, '019-0191-1919', 'P00', 'S002', 19191.0000000000, 'S01', '011-1111-1111', 'Li', '2024-08-07', NULL, NULL, 'U01', 'b'),
 	(59, '018-8855-8585', 'P08', 'S022', 85858.0000000000, 'S01', '011-1111-1111', 'Li', '2024-08-07', NULL, NULL, 'U01', 'b'),
 	(60, '016-1231-1321', 'P06', 'S001', 1231.0000000000, 'S01', '011-1111-1111', 'Li', '2024-08-07', NULL, NULL, 'U01', 'b'),
 	(62, '010-0111-1010', 'P00', 'S021', 10101.0000000000, 'S03', '010-5737-0741', 'JeongTaek', '2024-08-07', NULL, NULL, 'U02', 'zz'),
-	(63, '010-0100-0100', 'P00', 'S017', 10000.0000000000, 'S02', '010-5737-0741', 'JeongTaek', '2024-08-07', NULL, NULL, 'U02', 'zz'),
-	(64, '011-1212-2323', 'P01', 'S019', 8000.0000000000, 'S01', '010-5737-0741', 'JeongTaek', '2024-08-08', NULL, NULL, 'U02', 'zz'),
+	(63, '010-0100-0100', 'P00', 'S017', 10000.0000000000, 'S03', '010-5737-0741', 'JeongTaek', '2024-08-07', NULL, NULL, 'U02', 'zz'),
+	(64, '012-1212-2323', 'P01', 'S019', 8000.0000000000, 'S01', '010-5737-0741', 'JeongTaek', '2024-08-08', NULL, NULL, 'U02', 'zz'),
 	(65, '010-5858-5858', 'P00', 'S019', 5858.0000000000, 'S02', '012-2222-7890', 'Jessica', '2024-08-08', NULL, NULL, 'U01', 'abc'),
-	(66, '010-5555-5858', 'P00', 'S018', 5555.0000000000, 'S02', '012-2222-7890', 'Jessica', '2024-08-08', NULL, NULL, 'U01', 'abc'),
-	(72, '012-1231-1231', 'P00', 'S001', 1231.0000000000, 'S02', '010-5737-0741', 'JeongTaek', '2024-08-08', NULL, NULL, 'U02', 'zz'),
+	(66, '010-5555-5855', 'P00', 'S018', 5555.0000000000, 'S02', '012-2222-7890', 'Jessica', '2024-08-08', NULL, NULL, 'U01', 'abc'),
+	(72, '012-1231-1231', 'P00', 'S001', 1231.0000000000, 'S03', '010-5737-0741', 'JeongTaek', '2024-08-08', NULL, NULL, 'U02', 'zz'),
 	(73, '012-0190-1902', 'P00', 'S002', 1233.0000000000, 'S02', '011-1236-7890', 'Jung', '2024-08-08', NULL, NULL, 'U01', 'e'),
 	(74, '011-1919-0190', 'P01', 'S002', 1919.0000000000, 'S01', '011-1236-7890', 'Jung', '2024-08-08', NULL, NULL, 'U01', 'e'),
 	(75, '014-1919-2910', 'P04', 'S002', 2323.0000000000, 'S01', '011-1236-7890', 'Jung', '2024-08-08', NULL, NULL, 'U01', 'e'),
 	(76, '016-6688-8237', 'P06', 'S012', 600.0000000000, 'S01', '011-1236-7890', 'Jung', '2024-08-08', NULL, NULL, 'U01', 'e'),
 	(77, '013-3334-3257', 'P03', 'S009', 1233.0000000000, 'S01', '011-1236-7890', 'Jung', '2024-08-08', NULL, NULL, 'U01', 'e'),
-	(78, '011-1111-2356', 'P01', 'S007', 11111.0000000000, 'S01', '019-2344-4321', 'RYU', '2024-08-08', NULL, NULL, 'U02', 'f'),
+	(78, '011-1112-2356', 'P01', 'S007', 11111.0000000000, 'S01', '019-2344-4321', 'RYU', '2024-08-08', NULL, NULL, 'U02', 'f'),
 	(79, '017-1139-1323', 'P07', 'S010', 300.0000000000, 'S01', '019-2344-4321', 'RYU', '2024-08-08', NULL, NULL, 'U02', 'f'),
 	(80, '017-5200-2345', 'P07', 'S004', 520.0000000000, 'S01', '017-3487-7890', 'Kwon', '2024-08-08', NULL, NULL, 'U01', 'g'),
 	(81, '018-8888-8321', 'P08', 'S008', 8888.0000000000, 'S01', '017-3487-7890', 'Kwon', '2024-08-08', NULL, NULL, 'U01', 'g'),
@@ -210,9 +210,9 @@ CREATE TABLE IF NOT EXISTS `sync_changes` (
   `new_sale_contact` varchar(255) DEFAULT NULL,
   `update_type` enum('user_to_sale','sale_to_user') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=221 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=241 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- 테이블 데이터 glvs_phno_master.sync_changes:~0 rows (대략적) 내보내기
+-- 테이블 데이터 glvs_phno_master.sync_changes:~196 rows (대략적) 내보내기
 INSERT INTO `sync_changes` (`id`, `rgst_nm`, `new_user_contact`, `new_sale_contact`, `update_type`) VALUES
 	(1, 'JeongTaek', NULL, '010-5737-0741', 'user_to_sale'),
 	(2, 'JeongTaek', NULL, '010-5555-5555', 'user_to_sale'),
@@ -431,7 +431,27 @@ INSERT INTO `sync_changes` (`id`, `rgst_nm`, `new_user_contact`, `new_sale_conta
 	(217, 'Jin', NULL, '014-3580-4321', 'user_to_sale'),
 	(218, 'Jin', '014-3580-4321', NULL, 'sale_to_user'),
 	(219, 'Jin', NULL, '014-3580-4321', 'user_to_sale'),
-	(220, 'Jin', '014-3580-4321', NULL, 'sale_to_user');
+	(220, 'Jin', '014-3580-4321', NULL, 'sale_to_user'),
+	(221, 'JeongTaek', NULL, '010-5737-0741', 'user_to_sale'),
+	(222, 'JeongTaek', '010-5737-0741', NULL, 'sale_to_user'),
+	(223, 'JeongTaek', NULL, '010-5737-0741', 'user_to_sale'),
+	(224, 'JeongTaek', '010-5737-0741', NULL, 'sale_to_user'),
+	(225, 'John', NULL, '012-3456-7890', 'user_to_sale'),
+	(226, 'John', '012-3456-7890', NULL, 'sale_to_user'),
+	(227, 'Jessica', NULL, '012-2222-7890', 'user_to_sale'),
+	(228, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(229, 'Park', NULL, '010-3453-0745', 'user_to_sale'),
+	(230, 'Park', '010-3453-0745', NULL, 'sale_to_user'),
+	(231, 'Park', NULL, '010-3453-0745', 'user_to_sale'),
+	(232, 'Park', '010-3453-0745', NULL, 'sale_to_user'),
+	(233, 'JeongTaek', NULL, '010-5737-0741', 'user_to_sale'),
+	(234, 'JeongTaek', '010-5737-0741', NULL, 'sale_to_user'),
+	(235, 'RYU', NULL, '019-2344-4321', 'user_to_sale'),
+	(236, 'RYU', '019-2344-4321', NULL, 'sale_to_user'),
+	(237, 'John', NULL, '012-3456-7890', 'user_to_sale'),
+	(238, 'John', '012-3456-7890', NULL, 'sale_to_user'),
+	(239, 'Jessica', NULL, '012-2222-7890', 'user_to_sale'),
+	(240, 'Jessica', '012-2222-7890', NULL, 'sale_to_user');
 
 -- 이벤트 glvs_phno_master.sync_changes_event 구조 내보내기
 DELIMITER //

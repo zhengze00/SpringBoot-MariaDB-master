@@ -160,6 +160,9 @@ String.prototype.includes
 -Local Storage 유저 값 저장 기능
 -인터셉터 기능 - 사용자의 요청 가로채는 역할
 ❌
-问题1：表设计
-问题2：部署server
+
+问题1：打包和部署
+问题2：表设计
+
+zhengze00@hotmail.com
 
