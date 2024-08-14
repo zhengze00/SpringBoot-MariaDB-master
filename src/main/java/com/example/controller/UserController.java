@@ -62,10 +62,11 @@ public class UserController {
     public Result updateUserData(@RequestBody User user) {
         try {
             log.info("Received data: " + user);
-            userMapper.updateUserData(user);
+            userMapper.updateUserInUserTable(user);
+            userMapper.updateUserInSaleTable(user);
             return Result.success("User data updated successfully!");
         } catch (Exception e) {
-            log.error("Error updating user data:", e); // 打印详细的错误信息
+            log.error("Error updating user data:", e);
             return Result.error("Error updating user data");
         }
     }

@@ -27,8 +27,11 @@ public interface UserMapper {
     User getUserList(String user_nm);
 
     // 更新用户数据
-    @Update("UPDATE glvs_user SET user_nm=#{user_nm}, user_contact=#{user_contact}, rgst_nm=#{rgst_nm}, user_bank_acc=#{user_bank_acc} WHERE rgst_nm=#{rgst_nm}")
-    void updateUserData(User user);
+    @Update("UPDATE glvs_user SET user_nm=#{user_nm}, user_contact=#{user_contact}, rgst_nm=#{rgst_nm}, user_bank_acc=#{user_bank_acc} WHERE rgst_nm=#{rgst_nm};")
+    void updateUserInUserTable(User user);
+
+    @Update("UPDATE glvs_sale_phn_num SET sale_contact=#{user_contact} WHERE rgst_nm=#{rgst_nm};")
+    void updateUserInSaleTable(User user);
 
     @Select("SELECT * FROM glvs_user WHERE rgst_nm = #{rgst_nm}")
     User getUserByNm(String rgst_nm);
