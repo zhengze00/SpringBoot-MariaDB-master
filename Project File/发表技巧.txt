@@ -99,6 +99,10 @@ String.prototype.includes
 7.怎么实时显示数据？
 安装npm install lodash ，watch 监听数据变化
 
+8.什么是Route Guards?
+检查当前用户是否有访问管理员页面的权限
+通过localStorage.getItem('user_typ_cd')获取用户类型编码，然后判断是否为管理员。如果用户类型编码是U01，则提示用户没有访问权限；否则，跳转到/admin/scs页面。
+
 
 先得到所有已经卖出的商品列表
 对里面user nm去重
