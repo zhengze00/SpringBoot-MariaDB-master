@@ -110,9 +110,9 @@ CREATE TABLE IF NOT EXISTS `glvs_sale_phn_num` (
   CONSTRAINT `fk_sale_ctgr_cd` FOREIGN KEY (`sale_ctgr_cd`) REFERENCES `glvs_common_cd` (`comm_cd_val`),
   CONSTRAINT `fk_sale_phn_pfx_cd` FOREIGN KEY (`sale_phn_pfx_cd`) REFERENCES `glvs_common_cd` (`comm_cd_val`),
   CONSTRAINT `fk_sale_status_cd` FOREIGN KEY (`sale_status_cd`) REFERENCES `glvs_common_cd` (`comm_cd_val`)
-) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- 테이블 데이터 glvs_phno_master.glvs_sale_phn_num:~64 rows (대략적) 내보내기
+-- 테이블 데이터 glvs_phno_master.glvs_sale_phn_num:~66 rows (대략적) 내보내기
 INSERT INTO `glvs_sale_phn_num` (`sale_id`, `sale_phn_num`, `sale_phn_pfx_cd`, `sale_ctgr_cd`, `sale_price`, `sale_status_cd`, `sale_contact`, `rgst_nm`, `rgst_dt`, `audit_nm`, `audit_dt`, `user_typ_cd`, `user_nm`) VALUES
 	(3, '011-1435-6789', 'P01', 'S028', 300.0000000000, 'S01', '010-3453-0745', 'Park', '2024-06-28', NULL, NULL, 'U02', 'c'),
 	(30, '012-3456-8789', 'P03', 'S028', 100.0000000000, 'S03', '010-5737-0741', 'JeongTaek', '2024-08-02', NULL, NULL, 'U02', 'zz'),
@@ -178,7 +178,8 @@ INSERT INTO `glvs_sale_phn_num` (`sale_id`, `sale_phn_num`, `sale_phn_pfx_cd`, `
 	(116, '011-3788-8888', 'P01', 'S008', 113140.0000000000, 'S02', '010-4423-2232', 'Ju', '2024-08-08', NULL, NULL, 'U01', 'seller'),
 	(117, '011-8888-8388', 'P01', 'S007', 106670.0000000000, 'S01', '010-4423-2232', 'Ju', '2024-08-08', NULL, NULL, 'U01', 'seller'),
 	(118, '010-2222-2233', 'P00', 'S008', 222222.0000000000, 'S01', '010-4423-2232', 'Ju', '2024-08-12', NULL, NULL, 'U01', 'seller'),
-	(131, '010-1112-3333', 'P00', 'S001', 12000.0000000000, 'S01', '010-4423-2232', 'Ju', '2024-08-16', NULL, NULL, 'U01', 'Seller');
+	(131, '010-1112-3333', 'P00', 'S001', 12000.0000000000, 'S01', '010-4423-2232', 'Ju', '2024-08-16', NULL, NULL, 'U01', 'Seller'),
+	(150, '016-7267-687', 'P06', 'S024', 38888.0000000000, 'S01', '010-4423-2232', 'Ju', '2024-08-20', NULL, NULL, 'U01', 'Seller');
 
 -- 테이블 glvs_phno_master.glvs_settl_rt 구조 내보내기
 CREATE TABLE IF NOT EXISTS `glvs_settl_rt` (
@@ -232,8 +233,8 @@ INSERT INTO `glvs_user` (`user_id`, `user_nm`, `user_pw`, `user_contact`, `user_
 	(14, 'l', '123', '015-2479-4321', 'U02', 'NH444-555-6661', 'Hwang', '2024-08-08', 'JeongTaek', '2024-08-08'),
 	(15, 'm', '123', '011-5380-7890', 'U01', 'SH111-222-3329', 'Ko', '2024-08-08', 'JeongTaek', '2024-08-08'),
 	(16, 'n', '123', '014-3580-4321', 'U02', 'NH444-555-6667', 'Jin', '2024-08-08', 'JeongTaek', '2024-08-08'),
-	(17, 'Seller', '123', '010-4423-2232', 'U01', 'SH111-222-4433', 'Ju', '2024-08-08', 'JeongTaek', '2024-08-08'),
-	(18, 'admin', '123', '013-2346-4322', 'U02', 'NH444-555-6556', 'Yu', '2024-08-08', 'JeongTaek', '2024-08-08');
+	(17, 'Seller', '123', '010-4423-2232', 'U01', '신한111-222-4433', 'Ju', '2024-08-08', 'JeongTaek', '2024-08-08'),
+	(18, 'admin', '123', '013-2346-4322', 'U02', '농협444-555-6556', 'Yu', '2024-08-08', 'JeongTaek', '2024-08-08');
 
 -- 테이블 glvs_phno_master.sync_changes 구조 내보내기
 CREATE TABLE IF NOT EXISTS `sync_changes` (
@@ -243,9 +244,9 @@ CREATE TABLE IF NOT EXISTS `sync_changes` (
   `new_sale_contact` varchar(255) DEFAULT NULL,
   `update_type` enum('user_to_sale','sale_to_user') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=513 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=540 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- 테이블 데이터 glvs_phno_master.sync_changes:~360 rows (대략적) 내보내기
+-- 테이블 데이터 glvs_phno_master.sync_changes:~491 rows (대략적) 내보내기
 INSERT INTO `sync_changes` (`id`, `rgst_nm`, `new_user_contact`, `new_sale_contact`, `update_type`) VALUES
 	(1, 'JeongTaek', NULL, '010-5737-0741', 'user_to_sale'),
 	(2, 'JeongTaek', NULL, '010-5555-5555', 'user_to_sale'),
@@ -748,7 +749,34 @@ INSERT INTO `sync_changes` (`id`, `rgst_nm`, `new_user_contact`, `new_sale_conta
 	(509, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
 	(510, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
 	(511, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
-	(512, 'Jessica', '012-2222-7890', NULL, 'sale_to_user');
+	(512, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(513, 'Ju', '010-4423-2232', NULL, 'sale_to_user'),
+	(514, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(515, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(516, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(517, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(518, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(519, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(520, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(521, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(522, 'Ju', '010-4423-2232', NULL, 'sale_to_user'),
+	(523, 'Ju', '010-4423-2232', NULL, 'sale_to_user'),
+	(524, 'Ju', '010-4423-2232', NULL, 'sale_to_user'),
+	(525, 'Ju', '010-4423-2232', NULL, 'sale_to_user'),
+	(526, 'Ju', NULL, '010-4423-2232', 'user_to_sale'),
+	(527, 'Yu', NULL, '013-2346-4322', 'user_to_sale'),
+	(528, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(529, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(530, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(531, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(532, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(533, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(534, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(535, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(536, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(537, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(538, 'Jessica', '012-2222-7890', NULL, 'sale_to_user'),
+	(539, 'Jessica', '012-2222-7890', NULL, 'sale_to_user');
 
 -- 이벤트 glvs_phno_master.sync_changes_event 구조 내보내기
 DELIMITER //
