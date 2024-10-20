@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private HiMapper hiMapper;
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @PostMapping("/login")
     public Result login(@RequestBody User user) {
         // 从数据库找用户写的对应的编号
@@ -57,7 +57,7 @@ public class UserController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @PostMapping("/updateUserData")
     public Result updateUserData(@RequestBody User user) {
         try {
@@ -71,7 +71,7 @@ public class UserController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @PostMapping("/changePassword")
     public Result updateUserPassword(@RequestBody User user) {
         try {

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://148.66.156.232:8080")
 @RestController
 public class HelloController {
     @Autowired
@@ -35,7 +35,7 @@ public class HelloController {
         return "Hello World";
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @RequestMapping("/getSalePhnNum")
     public Map<String, Object> getSalePhnNum() {
         log.info("request from getSalePhnNum");
@@ -58,7 +58,7 @@ public class HelloController {
         return response;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @RequestMapping("/getBankAccount")
     public Map<String, Object> getBankAccount() {
         log.info("request from getBankAccount");
@@ -81,7 +81,7 @@ public class HelloController {
         return response;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @RequestMapping("/getPfxCount")
     public List<PfxCount> getPfxCount() {
         log.info("request from getPfxCount");
@@ -90,7 +90,7 @@ public class HelloController {
         return PfxCountList;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @RequestMapping("/upload_phone")
     public Result uploadPhone(@RequestBody PhoneUploadDTO phoneUploadDTO, HttpServletRequest req) {
         // 从数据库找用户写的对应的编号
@@ -120,7 +120,7 @@ public class HelloController {
         return Result.success();
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @PostMapping("/update_phone")
     public Result updatePhoneData(@RequestBody PhoneUploadDTO phoneUploadDTO) {
         // 从数据库找用户写的对应的编号
@@ -143,7 +143,7 @@ public class HelloController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @PostMapping("/delete_phone")
     public Result deletePhoneData(@RequestBody SaleID saleID) {
         try {
@@ -156,7 +156,7 @@ public class HelloController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://148.66.156.232:8080")
     @PostMapping("/markSettlementCompleted")
     public Result markSettlementCompleted(@RequestBody PhoneUploadDTO phoneUploadDTO) {
         log.info("Entering markSettlementCompleted method.");
